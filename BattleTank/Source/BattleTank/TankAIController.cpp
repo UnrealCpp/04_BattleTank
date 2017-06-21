@@ -3,6 +3,10 @@
 #include "BattleTank.h"
 #include "TankAIController.h"
 
+
+
+
+
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -16,10 +20,26 @@ void ATankAIController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("AI Controller Posessing: %s"), *(ControlledTank->GetName()));
 	}
+
+	auto FirstPlayerController = GetPlayerTank();
+	if (!FirstPlayerController)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI Controller cant reach Player Controller"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI Controller Reaching : %s"), *(FirstPlayerController->GetName()));
+	}
 }
 
 ATank* ATankAIController::GetControlledTank() const
 {
-	UE_LOG(LogTemp, Warning, TEXT("PlayerController Posessed Tank"));
+	UE_LOG(LogTemp, Warning, TEXT("AIController Posessed Tank"));
 	return Cast<ATank>(GetPawn());
+}
+
+ATank* ATankAIController::GetPlayerTank() const
+{
+	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+
 }

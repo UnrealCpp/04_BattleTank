@@ -3,6 +3,16 @@
 #include "BattleTank.h"
 #include "TankPlayerController.h"
 
+
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	AimTowardsCrosshair();
+
+	//UE_LOG(LogTemp, Warning, TEXT("Player Controller tick"))
+}
+
+
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -22,4 +32,11 @@ ATank* ATankPlayerController::GetControlledTank() const
 {
 	UE_LOG(LogTemp, Warning, TEXT("PlayerController Posessed Tank"));
 	return Cast<ATank>(GetPawn());
+}
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
+
 }
