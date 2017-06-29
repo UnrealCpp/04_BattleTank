@@ -33,4 +33,9 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 			float CrosshairLocY = 0.33333;
 
 		bool GetLookDirection(FVector2D Crosshair, FVector& LookDirection) const;
+
+		bool GetLookVectorHitLocation(FVector& HitLocation,FVector LookDirection) const;
+
+		UPROPERTY(EditAnywhere)
+			float LineTraceRange=10000.0;
 };
