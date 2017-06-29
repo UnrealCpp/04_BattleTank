@@ -26,4 +26,9 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 
 		//return out
 		bool GetSight(FVector& HitLocation) const;
+
+		UPROPERTY(EditAnywhere)
+			float CrosshairLocX = 0.5;
+		UPROPERTY(EditAnywhere)
+			float CrosshairLocY = 0.33333;
 };
