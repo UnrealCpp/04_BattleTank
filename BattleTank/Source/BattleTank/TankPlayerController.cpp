@@ -67,13 +67,20 @@ bool ATankPlayerController::GetSight(FVector& HitLocation) const
 
 	//UE_LOG(LogTemp, Warning, TEXT("Crosshair : %s"), *Crosshair.ToString());
 	//de project the screen position of the crosshair to a world direction
-	FVector Cameraworldloc;
-	FVector worldDirection;
-	if (DeprojectScreenPositionToWorld(Crosshair.X, Crosshair.Y, Cameraworldloc, worldDirection))
+	FVector LookDirection;
+	if (GetLookDirection(Crosshair, LookDirection))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("World : %s"), *worldDirection.ToString());
+		UE_LOG(LogTemp, Warning, TEXT("World : %s"), *LookDirection.ToString());
 	}
 
 	//line trace along that look direction, and see what we hit (up to max range)
 	return true;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D Crosshair, FVector& LookDirection) const
+{
+	FVector Cameraworldloc;
+
+	return DeprojectScreenPositionToWorld(Crosshair.X, Crosshair.Y, Cameraworldloc, LookDirection);
+
 }
