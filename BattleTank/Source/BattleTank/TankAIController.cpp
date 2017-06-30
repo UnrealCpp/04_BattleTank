@@ -34,7 +34,7 @@ void ATankAIController::BeginPlay()
 
 ATank* ATankAIController::GetControlledTank() const
 {
-	UE_LOG(LogTemp, Warning, TEXT("AIController Posessed Tank"));
+	//UE_LOG(LogTemp, Warning, TEXT("AIController Posessed Tank"));
 	return Cast<ATank>(GetPawn());
 }
 
@@ -42,4 +42,19 @@ ATank* ATankAIController::GetPlayerTank() const
 {
 	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (GetPlayerTank())
+	{
+		//TODO move towards the player
+
+		// aim
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+
+		//fire if its ready
+
+	}
 }
